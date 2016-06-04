@@ -10,12 +10,15 @@ local function Level01()
 
   function state:entities()
     return fun.chain(
-      fun.range( 0, 31):map(function(i) return Ground(i * w, 23 * h) end),
-      fun.range(10, 21):map(function(i) return Ground(i * w, 19 * h) end),
-      fun.range(13, 18):map(function(i) return Ground(i * w, 15 * h) end),
+      fun.range( 1, 30):map(function(i) return Ground( i * w, 23 * h) end),
+      fun.range(10, 21):map(function(i) return Ground( i * w, 19 * h) end),
+      fun.range(13, 18):map(function(i) return Ground( i * w, 15 * h) end),
+      fun.range( 1,  4):map(function(i) return Ground( i * w, 11 * h) end),
+      fun.range(27, 30):map(function(i) return Ground( i * w, 11 * h) end),
+      fun.range(13, 18):map(function(i) return Ground( i * w,  7 * h) end),
+      fun.range( 0, 23):map(function(i) return Ground(     0,  i * h) end),
+      fun.range( 0, 23):map(function(i) return Ground(31 * w,  i * h) end),
       {
-        Ground(-w, 22 * h),
-        Ground(32 * w, 22 * h),
         Player(384, 209)
       }
     )
