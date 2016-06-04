@@ -13,7 +13,7 @@ local function Player(x, y)
       left  = 'a',
       right = 'd',
       quit  = 'escape',
-      turbo = 'rgui'
+      turbo = '/'
     },
     motion = {
       vx = 0,

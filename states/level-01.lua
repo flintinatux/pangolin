@@ -1,18 +1,21 @@
 local Base   = require('states.base')
+local config = require('lib.config')
 local fun    = require('lib.fun')
 local Ground = require('entities.ground')
 local Player = require('entities.player')
 
 local function Level01()
   local state = Base()
+  local h, w = config.tile.h, config.tile.w
 
   function state:entities()
     return fun.chain(
-      fun.range( 0, 24):map(function(i) return Ground(i * 32, 418) end),
-      fun.range(10, 14):map(function(i) return Ground(i * 32, 290) end),
+      fun.range( 0, 31):map(function(i) return Ground(i * w, 23 * h) end),
+      fun.range(10, 21):map(function(i) return Ground(i * w, 19 * h) end),
+      fun.range(13, 18):map(function(i) return Ground(i * w, 15 * h) end),
       {
-        Ground(-32, 386),
-        Ground(800, 386),
+        Ground(-w, 22 * h),
+        Ground(32 * w, 22 * h),
         Player(384, 209)
       }
     )
