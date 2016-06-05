@@ -9,11 +9,15 @@ local function Player(x, y)
     collision = {},
     controls = {},
     inputs = {
-      jump  = 'w',
-      left  = 'a',
-      right = 'd',
-      quit  = 'escape',
-      turbo = '/'
+      actions = {
+        jump = 'w',
+        quit = 'escape'
+      },
+      states = {
+        left  = 'a',
+        right = 'd',
+        turbo = '/'
+      }
     },
     motion = {
       vx = 0,

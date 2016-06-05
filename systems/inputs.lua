@@ -1,13 +1,28 @@
 local tiny = require('lib.tiny')
 
 local function Inputs()
-  local system = tiny.processingSystem()
+  local system  = tiny.processingSystem()
 
-  system.filter = tiny.requireAll('inputs', 'controls')
+  system.filter = tiny.requireAll('controls', 'inputs')
+
+  function love.keypressed(key)
+    for _, e in ipairs(system.entities) do
+      for ctrl, mapping in pairs(e.inputs.actions) do
+        if key == mapping then table.insert(e.controls.actions, ctrl) end
+      end
+    end
+  end
+
+  function system:onAdd(e)
+    e.controls = {
+      actions = {},
+      states  = {}
+    }
+  end
 
   function system:process(e, dt)
-    for ctrl, key in pairs(e.inputs) do
-      e.controls[ctrl] = love.keyboard.isDown(key)
+    for ctrl, mapping in pairs(e.inputs.states) do
+      e.controls.states[ctrl] = love.keyboard.isDown(mapping)
     end
   end
 
