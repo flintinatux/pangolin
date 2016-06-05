@@ -19,9 +19,7 @@ local function Player(x, y)
       vx = 0,
       vy = 0,
       ax = 0,
-      ay = physics.g,
-      vxmax = run.vmin,
-      axmax = run.a
+      ay = physics.g
     },
     player = true,
     position = {

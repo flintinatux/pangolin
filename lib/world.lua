@@ -1,5 +1,8 @@
+local Timer = require('lib.timer')
+
 local function World()
   local bump  = require('lib.bump').newWorld()
+  local timer = Timer.new()
   local tiny  = require('lib.tiny').world()
   local world = {}
 
@@ -9,7 +12,7 @@ local function World()
   end
 
   function world.addSystem(System)
-    tiny:addSystem(System(world))
+    tiny:addSystem(System(world, timer))
   end
 
   function world.move(e, x, y)
@@ -22,6 +25,7 @@ local function World()
   end
 
   function world.update(dt, filter)
+    timer:update(dt)
     tiny:update(dt, filter)
   end
 

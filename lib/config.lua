@@ -14,7 +14,7 @@ return {
     g = 5 * tile.h / jumpTime^2
   },
   run = {
-    a    = 5000,
+    dt   = 0.1,
     vmin = 250,
     vmax = 500
   },

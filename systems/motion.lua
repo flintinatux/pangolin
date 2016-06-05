@@ -7,14 +7,9 @@ local function Motion(world)
 
   function system:process(e, dt)
     local m, p = e.motion, e.position
-    local friction = 0
 
-    if m.axmax and m.vxmax then
-      friction = -(m.axmax / m.vxmax)
-    end
-
-    m.vx = m.vx * (1 + friction * dt) + m.ax * dt
-    m.vy = m.vy + m.ay * dt
+    m.vx = m.vx + (m.ax or 0) * dt
+    m.vy = m.vy + (m.ay or 0) * dt
 
     local x = p.x + m.vx * dt
     local y = p.y + m.vy * dt
