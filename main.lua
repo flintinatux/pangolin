@@ -1,3 +1,4 @@
+require('ext.index')
 local Gamestate = require('lib.gamestate')
 local Level01   = require('states.level-01')
 

@@ -7,8 +7,15 @@ local tile = {
 
 return {
   camera = {
-    xmin = love.graphics.getWidth()  / 2,
-    ymax = love.graphics.getHeight() / 2
+    window = {
+      h = 4 * tile.h
+    },
+    x = {
+      min = love.graphics.getWidth()/2
+    },
+    y = {
+      max = love.graphics.getHeight()/2 + 2 * tile.h
+    }
   },
   jump = {
     threshold = 100,

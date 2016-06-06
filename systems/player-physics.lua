@@ -1,12 +1,12 @@
 local config = require('lib.config')
 local tiny   = require('lib.tiny')
 
-local function PlayerPhysics(world)
+local function PlayerPhysics(world, timer, camera)
   local system  = tiny.processingSystem()
   system.filter = tiny.requireAll('player')
 
   function system:process(e, dt)
-    local m, s = e.motion, e.state
+    local m, p, s = e.motion, e.position, e.state
 
     m.ay = config.physics.g
 
