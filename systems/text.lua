@@ -1,8 +1,7 @@
 local tiny = require('lib.tiny')
 
 local function Text()
-  local system = tiny.processingSystem({ draw = true })
-
+  local system  = tiny.processingSystem({ draw = true })
   system.filter = tiny.requireAll('text')
 
   function system:process(e, dt)

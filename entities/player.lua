@@ -6,6 +6,7 @@ local physics, run, tile = config.physics, config.run, config.tile
 local function Player(x, y)
   return {
     bump = 'touch',
+    camera = true,
     collision = {},
     controls = {},
     inputs = {

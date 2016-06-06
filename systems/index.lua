@@ -1,4 +1,5 @@
 return {
+  require('systems.camera'),
   require('systems.controls'),
   require('systems.inputs'),
   require('systems.motion'),

@@ -6,7 +6,12 @@ local tile = {
 }
 
 return {
+  camera = {
+    xmin = love.graphics.getWidth()  / 2,
+    ymax = love.graphics.getHeight() / 2
+  },
   jump = {
+    threshold = 100,
     vmin = -5 * tile.h / jumpTime,
     vmax = -7 * tile.h / jumpTime
   },
@@ -14,7 +19,7 @@ return {
     g = 5 * tile.h / jumpTime^2
   },
   run = {
-    dt   = 0.1,
+    dt   = 0.25,
     vmin = 250,
     vmax = 500
   },

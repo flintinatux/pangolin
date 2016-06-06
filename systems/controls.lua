@@ -11,11 +11,9 @@ local function Controls(world, timer)
   local dispatch = {}
 
   function dispatch.jump(e, dt)
-    local m, s = e.motion, e.state
+    local c, m, s = e.controls.states, e.motion, e.state
     if s:jump() then
-      m.vy = math.abs(m.vx) <= run.vmin
-        and jump.vmin
-        or  jump.vmin + (jump.vmax - jump.vmin) * (math.abs(m.vx) - run.vmin) / (run.vmax - run.vmin)
+      m.vy = c.turbo and math.abs(m.vx) > jump.threshold and jump.vmax or jump.vmin
     end
   end
 
@@ -31,7 +29,7 @@ local function Controls(world, timer)
 
     local dir   = c.left and -1 or (c.right and 1 or 0)
     local vgoal = c.turbo and run.vmax or run.vmin
-    m.ax = (dir * vgoal - m.vx) / run.dt
+    m.ax = (dir == 0 and 2 or 1) * (dir * vgoal - m.vx) / run.dt
   end
 
   return system

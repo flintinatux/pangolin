@@ -1,8 +1,7 @@
-local tiny   = require('lib.tiny')
+local tiny = require('lib.tiny')
 
 local function Sprite()
-  local system = tiny.processingSystem({ draw = true })
-
+  local system  = tiny.processingSystem({ draw = true })
   system.filter = tiny.requireAll('position', 'sprite')
 
   function system:process(e, dt)

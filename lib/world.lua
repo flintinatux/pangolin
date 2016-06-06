@@ -1,10 +1,16 @@
-local Timer = require('lib.timer')
+local Camera = require('lib.camera')
+local Timer  = require('lib.timer')
+
+local function bumpFilter(e, other) return other.bump end
+local function drawFilter   (_, s)  return     s.draw end
+local function updateFilter (_, s)  return not s.draw end
 
 local function World()
-  local bump  = require('lib.bump').newWorld()
-  local timer = Timer.new()
-  local tiny  = require('lib.tiny').world()
-  local world = {}
+  local bump   = require('lib.bump').newWorld()
+  local camera = Camera.new()
+  local timer  = Timer.new()
+  local tiny   = require('lib.tiny').world()
+  local world  = {}
 
   function world.add(e)
     bump:add(e, e.position.x, e.position.y, e.size.w, e.size.h)
@@ -12,7 +18,13 @@ local function World()
   end
 
   function world.addSystem(System)
-    tiny:addSystem(System(world, timer))
+    tiny:addSystem(System(world, timer, camera))
+  end
+
+  function world.draw()
+    camera:attach()
+    tiny:update(love.timer.getDelta(), drawFilter)
+    camera:detach()
   end
 
   function world.move(e, x, y)
@@ -24,13 +36,9 @@ local function World()
     tiny:remove(e)
   end
 
-  function world.update(dt, filter)
+  function world.update(dt)
     timer:update(dt)
-    tiny:update(dt, filter)
-  end
-
-  function bumpFilter(e, other)
-    return other.bump
+    tiny:update(dt, updateFilter)
   end
 
   return world
