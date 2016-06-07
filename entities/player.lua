@@ -46,7 +46,8 @@ local function Player(x, y)
         { name = 'jump', from = 'standing', to = 'jumping'  },
         { name = 'land', from = 'jumping',  to = 'standing' }
       }
-    })
+    }),
+    wrap = true
   }
 end
 

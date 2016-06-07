@@ -1,14 +1,10 @@
 local Camera = require('lib.camera')
+local filter = require('lib.filter')
 local Timer  = require('lib.timer')
-
-local function bumpFilter(e, other) return other.bump  end
-local function debugFilter  (_, s)  return     s.debug end
-local function drawFilter   (_, s)  return     s.draw  end
-local function updateFilter (_, s)  return not s.draw  end
 
 local function World()
   local bump   = require('lib.bump').newWorld()
-  local camera = Camera.new()
+  local camera = Camera.new(0)
   local timer  = Timer.new()
   local tiny   = require('lib.tiny').world()
   local world  = {}
@@ -26,13 +22,19 @@ local function World()
 
   function world.draw()
     camera:attach()
-    tiny:update(love.timer.getDelta(), drawFilter)
+    tiny:update(love.timer.getDelta(), filter.draw)
     camera:detach()
-    tiny:update(love.timer.getDelta(), debugFilter)
+    tiny:update(love.timer.getDelta(), filter.debug)
   end
 
-  function world.move(e, x, y)
-    e.position.x, e.position.y, e.collision = bump:move(e, x, y, bumpFilter)
+  function world.move(e, x, y, warp)
+    if warp then
+      e.position.x = x
+      e.position.y = y
+      bump:update(e, x, y)
+    else
+      e.position.x, e.position.y, e.collision = bump:move(e, x, y, filter.bump)
+    end
   end
 
   function world.remove(e)
@@ -42,7 +44,7 @@ local function World()
 
   function world.update(dt)
     timer:update(dt)
-    tiny:update(dt, updateFilter)
+    tiny:update(dt, filter.update)
   end
 
   return world

@@ -14,8 +14,11 @@ return {
       min = love.graphics.getWidth()/2
     },
     y = {
-      max = love.graphics.getHeight()/2 + 2 * tile.h
+      max = 16 * tile.h
     }
+  },
+  map = {
+    w = 100 * tile.h
   },
   jump = {
     threshold = 100,

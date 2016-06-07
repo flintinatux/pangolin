@@ -18,7 +18,8 @@ local function Ground(x, y)
       r = 0,
       g = 255,
       b = 0
-    }
+    },
+    wrap = true
   }
 end
 

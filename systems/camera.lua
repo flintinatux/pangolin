@@ -9,8 +9,9 @@ local function Camera(world, timer, camera)
     local pos, size, state = e.position, e.size, e.state
     local dx, dy = 0, 0
 
-    local center = pos.x + size.w/2
-    local dx = (center > config.x.min and center or config.x.min) - camera.x
+    local dx = pos.x + size.w/2 - camera.x
+    -- local center = pos.x + size.w/2
+    -- local dx = (center > config.x.min and center or config.x.min) - camera.x
 
     local h = config.window.h
     local ct, cb = camera.y - 2*h/3, camera.y + h/3
