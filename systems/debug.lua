@@ -24,10 +24,11 @@ local function Debug()
     local pos, state = e.position, e.state
 
     -- camera window
+    local t, b = cy - 2*h/3, cy + h/3
     g.setColor(255, 255, 255, 70)
-    g.line(cx, cy - h/2, cx, cy + h/2)
-    g.line(cx - 10, cy - h/2, cx + 10, cy - h/2)
-    g.line(cx - 10, cy + h/2, cx + 10, cy + h/2)
+    g.line(cx, t, cx, b)
+    g.line(cx - 10, t, cx + 10, t)
+    g.line(cx - 10, b, cx + 10, b)
 
     -- debug output
     local ctx = {

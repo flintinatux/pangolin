@@ -8,7 +8,7 @@ local tile = {
 return {
   camera = {
     window = {
-      h = 4 * tile.h
+      h = 6 * tile.h
     },
     x = {
       min = love.graphics.getWidth()/2
