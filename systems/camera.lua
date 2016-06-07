@@ -10,8 +10,6 @@ local function Camera(world, timer, camera)
     local dx, dy = 0, 0
 
     local dx = pos.x + size.w/2 - camera.x
-    -- local center = pos.x + size.w/2
-    -- local dx = (center > config.x.min and center or config.x.min) - camera.x
 
     local h = config.window.h
     local ct, cb = camera.y - 2*h/3, camera.y + h/3
@@ -23,7 +21,7 @@ local function Camera(world, timer, camera)
       dy = pos.y - ct
     end
 
-    camera:move(dx/2, dy/16)
+    camera:move(32*dx*dt, 8*dy*dt)
   end
 
   return system

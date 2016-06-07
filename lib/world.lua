@@ -37,6 +37,10 @@ local function World()
     end
   end
 
+  function world.queryRect(l, t, w, h)
+    return bump:queryRect(l, t, w, h)
+  end
+
   function world.remove(e)
     bump:remove(e)
     tiny:remove(e)
