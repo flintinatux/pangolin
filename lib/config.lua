@@ -18,7 +18,7 @@ return {
     }
   },
   map = {
-    w = 100 * tile.h
+    w = 500 -- tiles
   },
   jump = {
     threshold = 100,

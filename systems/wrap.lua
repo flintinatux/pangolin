@@ -1,7 +1,8 @@
 local config = require('lib.config')
 local tiny   = require('lib.tiny')
 
-local map = config.map
+local map, tile = config.map, config.tile
+local width = map.w * tile.w
 
 local function Wrap(world)
   local system  = tiny.processingSystem()
@@ -15,10 +16,10 @@ local function Wrap(world)
   function system:process(e)
     local ex, ey, px = e.position.x, e.position.y, player.position.x
 
-    if ex < px - map.w/2 then
-      world.move(e, ex + map.w, ey, true)
-    elseif ex > px + map.w/2 then
-      world.move(e, ex - map.w, ey, true)
+    if ex < px - width/2 then
+      world.move(e, ex + width, ey, true)
+    elseif ex > px + width/2 then
+      world.move(e, ex - width, ey, true)
     end
   end
 
