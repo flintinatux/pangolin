@@ -17,8 +17,8 @@ local function Forest()
     local x = tiles:zip(fun.duplicate(w)):map(fun.operator.mul)
 
     local delta = {0,0,0,0,0,0,0,0,0,0,0,0,1,-1}
-    local y = {0}
-    tiles:take(map.w/2):each(function()
+    local y = {0,0,0}
+    tiles:take(map.w/2-3):each(function()
       table.insert(y, y[#y] + delta[math.random(1,#delta)] * h)
     end)
     y = fun.chain(y, _.reverse(y))
@@ -26,7 +26,7 @@ local function Forest()
     return fun.chain(
       fun.zip(x, y):map(Ground),
       {
-        Player(0, y:head() - h)
+        Player(-w/2, y:head() - h)
       }
     )
   end

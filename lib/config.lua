@@ -9,12 +9,6 @@ return {
   camera = {
     window = {
       h = 6 * tile.h
-    },
-    x = {
-      min = love.graphics.getWidth()/2
-    },
-    y = {
-      max = 16 * tile.h
     }
   },
   map = {

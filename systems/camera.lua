@@ -14,7 +14,7 @@ local function Camera(world, timer, camera)
     local h = config.window.h
     local ct, cb = camera.y - 2*h/3, camera.y + h/3
     local bottom = pos.y + size.h
-    -- bottom = bottom > config.y.max and config.y.max or bottom
+
     if bottom > cb or state:is('standing') then
       dy = bottom - cb
     elseif pos.y < ct then

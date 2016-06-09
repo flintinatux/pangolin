@@ -43,7 +43,9 @@ local function World()
     end
   end
 
-  world.queryRect = _.bind(bump.queryRect, bump)
+  world.queryPoint   = _.bind(bump.queryPoint,   bump)
+  world.queryRect    = _.bind(bump.queryRect,    bump)
+  world.querySegment = _.bind(bump.querySegment, bump)
 
   function world.remove(e)
     bump:remove(e)
