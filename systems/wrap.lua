@@ -5,7 +5,7 @@ local map, tile = config.map, config.tile
 local width = map.w * tile.w
 
 local function Wrap(world)
-  local system  = tiny.processingSystem()
+  local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('wrap')
   local player
 

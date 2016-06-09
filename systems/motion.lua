@@ -1,7 +1,7 @@
 local tiny = require('lib.tiny')
 
 local function Motion(world)
-  local system  = tiny.processingSystem()
+  local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('motion', 'position')
 
   function system:process(e, dt)

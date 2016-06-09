@@ -1,9 +1,11 @@
-local config  = require('lib.config').camera
-local filters = require('lib.filters')
-local tiny    = require('lib.tiny')
+local config = require('lib.config')
+local filter = require('lib.filter')
+local tiny   = require('lib.tiny')
+
+local tile, window = config.tile, config.camera.window
 
 local function Camera(world, timer, camera)
-  local system  = tiny.processingSystem()
+  local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('camera')
 
   function system:process(e, dt)
@@ -12,15 +14,14 @@ local function Camera(world, timer, camera)
 
     local dx = pos.x + size.w/2 - camera.x
 
-    local h = config.window.h
-    local ct, cb = camera.y - 2*h/3, camera.y + h/3
+    local ct, cb = camera.y - 2*window.h/3, camera.y + window.h/3
     local bottom = pos.y + size.h
 
     local height = love.graphics.getHeight()
-    local ground = world.queryRect(pos.x, pos.y + size.h, size.w, height/2, filters.ground)[1]
+    local ground = world.queryRect(pos.x, pos.y + size.h, size.w, height/2, filter.by('ground'))[1]
 
     if (ground) then
-      local limit = ground.position.y - height/4
+      local limit = ground.position.y - height/3 + tile.h
       bottom = bottom > limit and limit or bottom
     end
 

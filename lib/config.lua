@@ -12,6 +12,7 @@ return {
     }
   },
   map = {
+    branches = 100,
     w = 500 -- tiles
   },
   jump = {

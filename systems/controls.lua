@@ -5,7 +5,7 @@ local tiny   = require('lib.tiny')
 local jump, run = config.jump, config.run
 
 local function Controls(world, timer)
-  local system  = tiny.processingSystem()
+  local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('controls')
 
   local dispatch = {}

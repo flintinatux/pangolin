@@ -1,7 +1,6 @@
 local config = require('lib.config')
 local tiny   = require('lib.tiny')
 
-local cx, cy = love.graphics:getWidth()/2, love.graphics.getHeight()/2
 local graphics = love.graphics
 local h = config.camera.window.h
 
@@ -18,13 +17,14 @@ local function round(num, dec)
 end
 
 local function Debug(world, timer, camera)
-  local system  = tiny.processingSystem({ debug = true })
+  local system  = tiny.processingSystem({ hud = true })
   system.filter = tiny.requireAll('player')
 
   function system:process(e, dt)
     local pos, state = e.position, e.state
 
     -- camera window
+    local cx, cy = love.graphics:getWidth()/2, love.graphics.getHeight()/2
     local t, b = cy - 2*h/3, cy + h/3
     graphics.setColor(255, 255, 255, 70)
     graphics.line(cx, t, cx, b)
@@ -38,7 +38,7 @@ local function Debug(world, timer, camera)
       y = round(pos.y, 2),
       state = state.current
     }
-    graphics.print(debug % ctx, 50, 50)
+    graphics.print(debug % ctx, 10, 10)
   end
 
   return system

@@ -1,7 +1,7 @@
 local tiny = require('lib.tiny')
 
 local function Inputs()
-  local system  = tiny.processingSystem()
+  local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('controls', 'inputs')
 
   function love.keypressed(key)
