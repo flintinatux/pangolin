@@ -6,6 +6,5 @@ return {
   require('systems.motion'),
   require('systems.player-physics'),
   require('systems.sprite'),
-  require('systems.text'),
   require('systems.wrap')
 }

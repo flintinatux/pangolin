@@ -1,9 +1,9 @@
 require('ext.index')
 local Gamestate = require('lib.gamestate')
-local Level01   = require('states.level-01')
+local Forest    = require('states.forest')
 
 function love.load()
   require('assets.index')
   Gamestate.registerEvents()
-  Gamestate.switch(Level01())
+  Gamestate.switch(Forest())
 end

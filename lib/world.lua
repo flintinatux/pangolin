@@ -1,16 +1,16 @@
 local _       = require('lib.moses')
 local Camera  = require('lib.camera')
 local filters = require('lib.filters')
+local fun     = require('lib.fun')
+local systems = require('systems.index')
 local Timer   = require('lib.timer')
 
 local function World()
   local bump   = require('lib.bump').newWorld()
-  local camera = Camera.new(0)
+  local camera = Camera.new(0, 0)
   local timer  = Timer.new()
   local tiny   = require('lib.tiny').world()
   local world  = {}
-
-  camera.smoother = Camera.smooth.damped(2)
 
   function world.add(e)
     bump:add(e, e.position.x, e.position.y, e.size.w, e.size.h)
@@ -21,11 +21,16 @@ local function World()
     tiny:addSystem(System(world, timer, camera))
   end
 
-  function world.draw()
+  function world:draw()
     camera:attach()
     tiny:update(love.timer.getDelta(), filters.draw)
     camera:detach()
     tiny:update(love.timer.getDelta(), filters.debug)
+  end
+
+  function world:init()
+    fun.each(world.addSystem, systems)
+    fun.each(world.add, world.entities())
   end
 
   function world.move(e, x, y, warp)
@@ -45,7 +50,7 @@ local function World()
     tiny:remove(e)
   end
 
-  function world.update(dt)
+  function world:update(dt)
     timer:update(dt)
     tiny:update(dt, filters.update)
   end
