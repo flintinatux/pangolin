@@ -20,6 +20,7 @@ local function Player(x, y)
         turbo = '/'
       }
     },
+    minimap = true,
     motion = {
       vx = 0,
       vy = 0,

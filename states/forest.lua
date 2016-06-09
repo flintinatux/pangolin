@@ -16,13 +16,17 @@ local function Forest()
     local tiles = fun.range(0, map.w-1)
 
     -- Terrain
-    local delta = {0,0,0,0,0,0,0,0,0,0,0,0,1,-1}
+    local delta = {0,0,0,0,0,0,0,0,0,1}
     local x = tiles:zip(fun.duplicate(w)):map(fun.operator.mul)
-    local y = {0,0,0}
-    tiles:take(map.w/2-3):each(function()
-      table.insert(y, y[#y] + delta[math.random(1,#delta)] * h)
+    local y, dy = {0}, {}
+    fun.range(map.w/2):each(function()
+      local choice = delta[math.random(1,#delta)]
+      table.insert(dy,  choice)
+      table.insert(dy, -choice)
     end)
-    y = fun.chain(y, _.reverse(y))
+    for i, dy in ipairs(_.shuffle(dy)) do
+      table.insert(y, y[#y] + dy * h)
+    end
     local grounds = fun.zip(x, y):map(Ground)
 
     -- Branches
@@ -34,7 +38,7 @@ local function Forest()
     return fun.chain(
       grounds,
       {
-        Player(-w/2, y:head() - h)
+        Player(-w/2, y[1] - h)
       }
     )
   end

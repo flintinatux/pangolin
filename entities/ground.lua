@@ -6,6 +6,7 @@ local function Ground(x, y)
   return {
     bump = 'slide',
     ground = true,
+    minimap = true,
     position = {
       x = x,
       y = y
