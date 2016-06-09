@@ -11,7 +11,7 @@ local function PlayerPhysics(world, timer, camera)
     m.ay = config.physics.g
 
     for _, c in ipairs(e.collision) do
-      if c.other.ground then
+      if c.type == 'slide' then
         if c.normal.x ~= 0 then
           m.vx = 0
         end
