@@ -17,7 +17,7 @@ end
 
 function filter.platform(e, o)
   local falling = e.motion.vy > 0 and e.position.y + e.size.h <= o.position.y
-  return (falling or e.state:is('standing')) and 'slide' or 'cross'
+  return falling and 'slide' or 'cross'
 end
 
 return filter
