@@ -5,7 +5,7 @@ return {
   require('systems.inputs'),
   require('systems.minimap'),
   require('systems.motion'),
-  require('systems.player-physics'),
+  require('systems.physics-player'),
   require('systems.sprite'),
   require('systems.wrap')
 }

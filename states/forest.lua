@@ -35,17 +35,23 @@ local function Forest()
     local grounds = fun.zip(gx, gy):map(Ground)
 
     -- Branches
-    local branches = {}
+    local branches, defs = {}, {}
     fun.range(map.branches):each(function()
-      local bx = math.random(0, map.w-1)
-      local by = gy[bx+1] - math.random(3,50)*tile.h
+      local x = math.random(0, map.w-1)
+      local y = gy[x+1]/tile.h - math.random(3,50)
       local len = math.random(4, 16)
-      table.insert(branches, Branch(bx*tile.w, by))
-      for m, n in fun.range(len) do
-        by = by + sample(deltas)*tile.h
-        table.insert(branches, Branch((bx+n)*tile.w, by))
-      end
+      fun.range(0, len-1):each(function()
+        x = x + 1
+        y = y + sample(deltas)
+        defs[x] = defs[x] or {}
+        defs[x][y] = true
+      end)
     end)
+    for x, def in pairs(defs) do
+      for y, _ in pairs(def) do
+        table.insert(branches, Branch(x*tile.w, y*tile.h))
+      end
+    end
 
     return fun.chain(
       grounds,
