@@ -11,17 +11,21 @@ local map, tile = config.map, config.tile
 local function Forest()
   local world = World()
   local h, w = tile.h, tile.w
+  local deltas = {0,0,0,0,0,0,0,0,0,0,1,-1}
+
+  local function sample(array)
+    return array[math.random(1,#array)]
+  end
 
   function world.entities()
     math.randomseed(os.time())
-    local tiles = fun.range(0, map.w-1)
 
     -- Terrain
-    local delta = {0,0,0,0,0,0,0,0,0,1}
+    local tiles = fun.range(0, map.w-1)
     local gx = tiles:zip(fun.duplicate(w)):map(fun.operator.mul)
     local gy, dy = {0}, {}
     fun.range(map.w/2):each(function()
-      local choice = delta[math.random(1,#delta)]
+      local choice = sample(deltas)
       table.insert(dy,  choice)
       table.insert(dy, -choice)
     end)
@@ -34,8 +38,13 @@ local function Forest()
     local branches = {}
     fun.range(map.branches):each(function()
       local bx = math.random(0, map.w-1)
-      local by = gy[bx+1] - math.random(3,25)*tile.h
+      local by = gy[bx+1] - math.random(3,50)*tile.h
+      local len = math.random(4, 16)
       table.insert(branches, Branch(bx*tile.w, by))
+      for m, n in fun.range(len) do
+        by = by + sample(deltas)*tile.h
+        table.insert(branches, Branch((bx+n)*tile.w, by))
+      end
     end)
 
     return fun.chain(

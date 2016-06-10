@@ -1,10 +1,11 @@
 local config = require('lib.config')
+local filter = require('lib.filter')
 
 local tile = config.tile
 
 local function Branch(x, y)
   return {
-    bump = 'slide',
+    bump = filter.platform,
     minimap = true,
     position = {
       x = x,

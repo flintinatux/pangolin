@@ -39,7 +39,7 @@ local function World()
       e.position.y = y
       bump:update(e, x, y)
     else
-      e.position.x, e.position.y, e.collision = bump:move(e, x, y, filter.by('bump'))
+      e.position.x, e.position.y, e.collision = bump:move(e, x, y, filter.bump)
     end
   end
 
