@@ -15,7 +15,9 @@ local function Player(x, y)
         quit = 'escape'
       },
       states = {
+        up    = 'w',
         left  = 'a',
+        down  = 's',
         right = 'd',
         turbo = '/'
       }
@@ -44,8 +46,10 @@ local function Player(x, y)
     state = machine.create({
       initial = 'standing',
       events = {
-        { name = 'jump', from = 'standing', to = 'jumping'  },
-        { name = 'land', from = 'jumping',  to = 'standing' }
+        { name = 'climb', from = { 'jumping',  'standing' }, to = 'climbing' },
+        { name = 'fall',  from = { 'climbing', 'standing' }, to = 'falling'  },
+        { name = 'jump',  from = { 'falling',  'standing' }, to = 'jumping'  },
+        { name = 'land',  from = { 'falling',  'jumping'  }, to = 'standing' }
       }
     }),
     wrap = true,

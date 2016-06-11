@@ -19,6 +19,7 @@ local function Trunk(x, y)
       g = 104,
       b = 41
     },
+    trunk = true,
     wrap = true,
     zIndex = 50
   }

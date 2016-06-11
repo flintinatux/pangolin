@@ -26,7 +26,7 @@ local function Debug(world, timer, camera)
     -- camera window
     local cx, cy = love.graphics:getWidth()/2, love.graphics.getHeight()/2
     local t, b = cy - 2*h/3, cy + h/3
-    graphics.setColor(255, 255, 255, 70)
+    graphics.setColor(255, 255, 255, 150)
     graphics.line(cx, t, cx, b)
     graphics.line(cx - 10, t, cx + 10, t)
     graphics.line(cx - 10, b, cx + 10, b)

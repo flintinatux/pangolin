@@ -11,6 +11,9 @@ return {
       h = 6 * tile.h
     }
   },
+  climb = {
+    vy = 250
+  },
   map = {
     branches = 150,
     trunks = 25,

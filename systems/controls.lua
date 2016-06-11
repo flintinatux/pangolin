@@ -2,34 +2,45 @@ local config = require('lib.config')
 local fun    = require('lib.fun')
 local tiny   = require('lib.tiny')
 
-local jump, run = config.jump, config.run
-
 local function Controls(world, timer)
   local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('controls')
 
-  local dispatch = {}
+  local actions = {}
 
-  function dispatch.jump(e, dt)
+  function actions.jump(e, dt)
     local c, m, s = e.controls.states, e.motion, e.state
     if s:jump() then
-      m.vy = c.turbo and math.abs(m.vx) > jump.threshold and jump.vmax or jump.vmin
+      m.vy = c.turbo and math.abs(m.vx) > config.jump.threshold
+        and config.jump.vmax
+        or  config.jump.vmin
     end
   end
 
-  function dispatch.quit(e, dt)
+  function actions.quit(e, dt)
     love.event.push('quit')
   end
 
-  function system:process(e, dt)
+  local function climb(e, dt)
     local c, m = e.controls.states, e.motion
+    local dir  = c.up and -1 or (c.down and 1 or 0)
+    m.vy = dir * config.climb.vy
+  end
 
-    for _, action in ipairs(e.controls.actions) do dispatch[action](e, dt) end
+  local function run(e, dt)
+    local c, m  = e.controls.states, e.motion
+    local dir   = c.left and -1 or (c.right and 1 or 0)
+    local vgoal = c.turbo and config.run.vmax or config.run.vmin
+    m.ax = (dir == 0 and 2 or 1) * (dir * vgoal - m.vx) / config.run.dt
+  end
+
+  function system:process(e, dt)
+    local s = e.state
+    for _, action in ipairs(e.controls.actions) do actions[action](e, dt) end
     e.controls.actions = {}
 
-    local dir   = c.left and -1 or (c.right and 1 or 0)
-    local vgoal = c.turbo and run.vmax or run.vmin
-    m.ax = (dir == 0 and 2 or 1) * (dir * vgoal - m.vx) / run.dt
+    run(e, dt)
+    if (s:is('climbing')) then climb(e, dt) end
   end
 
   return system
