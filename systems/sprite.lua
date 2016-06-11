@@ -22,6 +22,7 @@ local function Sprite(world, timer, camera)
     local entities, len = world.queryRect(l, t, w, h)
 
     if (entities) then
+      table.sort(entities, function(a, b) return a.zIndex < b.zIndex end)
       for i, e in ipairs(entities) do drawSprite(e) end
     end
   end

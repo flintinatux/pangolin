@@ -20,7 +20,8 @@ local function Branch(x, y)
       g = 255,
       b = 0
     },
-    wrap = true
+    wrap = true,
+    zIndex = 200
   }
 end
 

@@ -20,7 +20,8 @@ local function Ground(x, y)
       g = 255,
       b = 0
     },
-    wrap = true
+    wrap = true,
+    zIndex = 100
   }
 end
 

@@ -48,7 +48,8 @@ local function Player(x, y)
         { name = 'land', from = 'jumping',  to = 'standing' }
       }
     }),
-    wrap = true
+    wrap = true,
+    zIndex = 1000
   }
 end
 
