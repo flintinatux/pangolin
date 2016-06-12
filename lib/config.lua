@@ -12,7 +12,7 @@ return {
     }
   },
   climb = {
-    vy = 250
+    v = 150
   },
   map = {
     branches = 150,

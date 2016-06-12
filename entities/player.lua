@@ -11,7 +11,7 @@ local function Player(x, y)
     controls = {},
     inputs = {
       actions = {
-        jump = 'w',
+        jump = 'k',
         quit = 'escape'
       },
       states = {
@@ -19,7 +19,7 @@ local function Player(x, y)
         left  = 'a',
         down  = 's',
         right = 'd',
-        turbo = '/'
+        turbo = ';'
       }
     },
     minimap = true,
@@ -46,10 +46,26 @@ local function Player(x, y)
     state = machine.create({
       initial = 'standing',
       events = {
-        { name = 'climb', from = { 'jumping',  'standing' }, to = 'climbing' },
-        { name = 'fall',  from = { 'climbing', 'standing' }, to = 'falling'  },
-        { name = 'jump',  from = { 'falling',  'standing' }, to = 'jumping'  },
-        { name = 'land',  from = { 'falling',  'jumping'  }, to = 'standing' }
+        {
+          name = 'climb',
+          from = { 'jumping',  'standing' },
+          to   = 'climbing'
+        },
+        {
+          name = 'fall',
+          from = { 'climbing', 'standing' },
+          to   = 'falling'
+        },
+        {
+          name = 'jump',
+          from = { 'climbing', 'falling', 'standing' },
+          to   = 'jumping'
+        },
+        {
+          name = 'land',
+          from = { 'falling',  'jumping'  },
+          to   = 'standing'
+        }
       }
     }),
     wrap = true,

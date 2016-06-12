@@ -23,8 +23,11 @@ local function Controls(world, timer)
 
   local function climb(e, dt)
     local c, m = e.controls.states, e.motion
-    local dir  = c.up and -1 or (c.down and 1 or 0)
-    m.vy = dir * config.climb.vy
+    local horz = c.right and 1 or (c.left and -1 or 0)
+    local vert = c.up and -1 or (c.down and 1 or 0)
+    m.vx = horz * config.climb.v
+    m.vy = vert * config.climb.v
+    m.ax = 0
   end
 
   local function run(e, dt)
@@ -39,8 +42,11 @@ local function Controls(world, timer)
     for _, action in ipairs(e.controls.actions) do actions[action](e, dt) end
     e.controls.actions = {}
 
-    run(e, dt)
-    if (s:is('climbing')) then climb(e, dt) end
+    if (s:is('climbing')) then
+      climb(e, dt)
+    else
+      run(e, dt)
+    end
   end
 
   return system

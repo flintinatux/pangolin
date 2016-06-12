@@ -8,6 +8,7 @@ local tile = config.tile
 local function Minimap(world, timer, camera)
   local system  = tiny.processingSystem({ hud = true })
   system.filter = tiny.requireAll('minimap', 'sprite')
+  system.active = false
 
   local function onMinimap(draw)
     graphics.push()

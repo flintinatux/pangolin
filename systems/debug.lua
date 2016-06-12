@@ -19,6 +19,7 @@ end
 local function Debug(world, timer, camera)
   local system  = tiny.processingSystem({ hud = true })
   system.filter = tiny.requireAll('player')
+  system.active = false
 
   function system:process(e, dt)
     local pos, state = e.position, e.state
