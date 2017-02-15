@@ -12,7 +12,7 @@ local function Minimap(res)
   local camera  = res.camera
   local system  = tiny.processingSystem({ hud = true })
   system.filter = tiny.requireAll('minimap', 'sprite')
-  system.active = true
+  system.active = false
 
   local function onMinimap(draw)
     graphics.push()
