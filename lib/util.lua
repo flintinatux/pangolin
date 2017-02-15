@@ -87,10 +87,9 @@ prop = function(k)
 end
 
 -- `((a, b) -> a, a, [b]) -> a`.
-reduce = function(f, init, list, g)
-  g = g or identity
+reduce = function(f, init, list)
   for _, v in ipairs(list) do
-    init = f(init, g(v))
+    init = f(init, v)
   end
   return init
 end
