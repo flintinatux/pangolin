@@ -1,15 +1,15 @@
-local _       = require('lib.moses')
-local Camera  = require('lib.camera')
+local _       = require('vendor.moses')
+local Camera  = require('vendor.camera')
 local filter  = require('lib.filter')
-local fun     = require('lib.fun')
+local fun     = require('vendor.fun')
 local systems = require('systems.index')
-local Timer   = require('lib.timer')
+local Timer   = require('vendor.timer')
 
 local function World()
-  local bump   = require('lib.bump').newWorld()
+  local bump   = require('vendor.bump').newWorld()
   local camera = Camera.new(0, 0)
   local timer  = Timer.new()
-  local tiny   = require('lib.tiny').world()
+  local tiny   = require('vendor.tiny').world()
   local world  = {}
 
   function world.add(e)

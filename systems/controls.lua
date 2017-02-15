@@ -1,6 +1,6 @@
 local config = require('lib.config')
-local fun    = require('lib.fun')
-local tiny   = require('lib.tiny')
+local fun    = require('vendor.fun')
+local tiny   = require('vendor.tiny')
 
 local function Controls(world, timer)
   local system  = tiny.processingSystem({ update = true })

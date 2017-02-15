@@ -1,6 +1,6 @@
 local config = require('lib.config')
 local filter = require('lib.filter')
-local tiny   = require('lib.tiny')
+local tiny   = require('vendor.tiny')
 
 local tile, window = config.tile, config.camera.window
 

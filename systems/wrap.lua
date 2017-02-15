@@ -1,5 +1,5 @@
 local config = require('lib.config')
-local tiny   = require('lib.tiny')
+local tiny   = require('vendor.tiny')
 
 local map, tile = config.map, config.tile
 local width = map.w * tile.w

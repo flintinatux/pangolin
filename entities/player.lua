@@ -1,5 +1,5 @@
 local config  = require('lib.config')
-local machine = require('lib.statemachine')
+local machine = require('vendor.statemachine')
 
 local physics, run, tile = config.physics, config.run, config.tile
 

@@ -1,4 +1,4 @@
-local tiny = require('lib.tiny')
+local tiny = require('vendor.tiny')
 
 local function Motion(world)
   local system  = tiny.processingSystem({ update = true })

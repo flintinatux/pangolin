@@ -1,5 +1,5 @@
-local fun  = require('lib.fun')
-local tiny = require('lib.tiny')
+local fun  = require('vendor.fun')
+local tiny = require('vendor.tiny')
 
 local graphics = love.graphics
 

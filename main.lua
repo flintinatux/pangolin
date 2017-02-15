@@ -1,5 +1,5 @@
 require('ext.index')
-local Gamestate = require('lib.gamestate')
+local Gamestate = require('vendor.gamestate')
 local Forest    = require('states.forest')
 
 function love.load()

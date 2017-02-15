@@ -1,6 +1,6 @@
-local _      = require('lib.moses')
+local _      = require('vendor.moses')
 local config = require('lib.config')
-local tiny   = require('lib.tiny')
+local tiny   = require('vendor.tiny')
 
 local graphics = love.graphics
 local tile = config.tile

@@ -1,5 +1,5 @@
 local config = require('lib.config')
-local tiny   = require('lib.tiny')
+local tiny   = require('vendor.tiny')
 
 local function PlayerPhysics(world, timer, camera)
   local system  = tiny.processingSystem({ update = true })

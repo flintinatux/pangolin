@@ -1,5 +1,5 @@
 local config = require('lib.config')
-local tiny   = require('lib.tiny')
+local tiny   = require('vendor.tiny')
 
 local graphics = love.graphics
 local h = config.camera.window.h
@@ -8,7 +8,6 @@ local debug = [[
   fps: ${fps}
   pos.x: ${x}
   pos.y: ${y}
-  state: ${state}
 ]]
 
 local function round(num, dec)
@@ -19,7 +18,7 @@ end
 local function Debug(world, timer, camera)
   local system  = tiny.processingSystem({ hud = true })
   system.filter = tiny.requireAll('player')
-  system.active = false
+  system.active = true
 
   function system:process(e, dt)
     local pos, state = e.position, e.state
