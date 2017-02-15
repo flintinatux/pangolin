@@ -1,7 +1,7 @@
 local config  = require('lib.config')
 local machine = require('vendor.statemachine')
 
-local physics, run, tile = config.physics, config.run, config.tile
+local physics, tile = config.physics, config.tile
 
 local function Player(x, y)
   return {
