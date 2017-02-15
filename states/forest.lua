@@ -1,4 +1,3 @@
-local _      = require('vendor.moses')
 local World  = require('lib.world')
 local config = require('lib.config')
 local fun    = require('vendor.fun')
@@ -24,13 +23,13 @@ local function Forest()
     -- Terrain
     local tiles = fun.range(0, map.w-1)
     local gx = tiles:zip(fun.duplicate(w)):map(fun.operator.mul)
-    local gy, dy = {0}, {}
+    local gy, dys = {0}, {}
     fun.range(map.w/2):each(function()
       local choice = sample(deltas)
-      table.insert(dy,  choice)
-      table.insert(dy, -choice)
+      table.insert(dys,  choice)
+      table.insert(dys, -choice)
     end)
-    for i, dy in ipairs(_.shuffle(dy)) do
+    for i, dy in ipairs(dys) do
       table.insert(gy, gy[#gy] + dy * h)
     end
     local grounds = fun.zip(gx, gy):map(Ground)

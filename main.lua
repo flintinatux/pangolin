@@ -1,3 +1,4 @@
+require('lib.util').import()
 require('ext.index')
 local Gamestate = require('vendor.gamestate')
 local Forest    = require('states.forest')

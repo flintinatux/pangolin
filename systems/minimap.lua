@@ -1,15 +1,18 @@
-local _      = require('vendor.moses')
 local config = require('lib.config')
 local tiny   = require('vendor.tiny')
 
 local graphics = love.graphics
+local huge = math.huge
 local tile = config.tile
+
+local posx = path({ 'position', 'x' })
+local posy = path({ 'position', 'y' })
 
 local function Minimap(res)
   local camera  = res.camera
   local system  = tiny.processingSystem({ hud = true })
   system.filter = tiny.requireAll('minimap', 'sprite')
-  system.active = false
+  system.active = true
 
   local function onMinimap(draw)
     graphics.push()
@@ -20,13 +23,12 @@ local function Minimap(res)
     graphics.pop()
   end
 
-  local function posx(e) return e.position.x end
-  local function posy(e) return e.position.y end
-
   function system:preProcess(dt)
     local entities = system.entities
-    local xmin, ymin = _.min(entities, posx), _.min(entities, posy)
-    local xmax, ymax = _.max(entities, posx), _.max(entities, posy)
+    local xmax = mapreduce(posx, max, -huge, entities)
+    local xmin = mapreduce(posx, min,  huge, entities)
+    local ymax = mapreduce(posy, max, -huge, entities)
+    local ymin = mapreduce(posy, min,  huge, entities)
 
     onMinimap(function()
       graphics.setColor(0, 0, 0, 150)

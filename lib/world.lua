@@ -1,4 +1,3 @@
-local _       = require('vendor.moses')
 local Camera  = require('vendor.camera')
 local filter  = require('lib.filter')
 local fun     = require('vendor.fun')
@@ -46,9 +45,9 @@ local function World()
     end
   end
 
-  world.queryPoint   = _.bind(bump.queryPoint,   bump)
-  world.queryRect    = _.bind(bump.queryRect,    bump)
-  world.querySegment = _.bind(bump.querySegment, bump)
+  world.queryPoint   = bind(bump.queryPoint,   bump)
+  world.queryRect    = bind(bump.queryRect,    bump)
+  world.querySegment = bind(bump.querySegment, bump)
 
   function world.remove(e)
     bump:remove(e)

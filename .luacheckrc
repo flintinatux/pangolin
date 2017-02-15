@@ -1,7 +1,8 @@
-local s = require('vendor.squirrel_min')
+-- local s = require('vendor.squirrel_min')
+local u = require('lib.util')
 
 exclude_files = { 'vendor/**/*.lua' }
-globals = s.concat({ '_DEBUG', 'love' }, s.keys(s))
+globals = u.concat({ '_DEBUG', 'love' }, u.keys(u))
 self = false
 std = 'lua51'
 unused_secondaries = false
