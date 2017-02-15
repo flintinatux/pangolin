@@ -4,7 +4,8 @@ local tiny   = require('vendor.tiny')
 
 local tile, window = config.tile, config.camera.window
 
-local function Camera(world, timer, camera)
+local function Camera(res)
+  local camera, world = res.camera, res.world
   local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('camera')
 

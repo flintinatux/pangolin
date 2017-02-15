@@ -1,6 +1,7 @@
 local tiny = require('vendor.tiny')
 
-local function Motion(world)
+local function Motion(res)
+  local world   = res.world
   local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('motion', 'position')
 

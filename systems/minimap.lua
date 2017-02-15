@@ -5,7 +5,8 @@ local tiny   = require('vendor.tiny')
 local graphics = love.graphics
 local tile = config.tile
 
-local function Minimap(world, timer, camera)
+local function Minimap(res)
+  local camera  = res.camera
   local system  = tiny.processingSystem({ hud = true })
   system.filter = tiny.requireAll('minimap', 'sprite')
   system.active = false

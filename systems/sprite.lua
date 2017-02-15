@@ -3,7 +3,8 @@ local tiny = require('vendor.tiny')
 
 local graphics = love.graphics
 
-local function Sprite(world, timer, camera)
+local function Sprite(res)
+  local camera, world = res.camera, res.world
   local system  = tiny.system({ draw = true })
 
   local function drawSprite(e)

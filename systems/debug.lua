@@ -15,7 +15,7 @@ local function round(num, dec)
   return math.floor(num * 10^dec) / 10^dec
 end
 
-local function Debug(world, timer, camera)
+local function Debug()
   local system  = tiny.processingSystem({ hud = true })
   system.filter = tiny.requireAll('player')
   system.active = true

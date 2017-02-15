@@ -1,7 +1,7 @@
 local config = require('lib.config')
 local tiny   = require('vendor.tiny')
 
-local function PlayerPhysics(world, timer, camera)
+local function PlayerPhysics()
   local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('player')
 

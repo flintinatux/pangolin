@@ -3,14 +3,17 @@ local Camera  = require('vendor.camera')
 local filter  = require('lib.filter')
 local fun     = require('vendor.fun')
 local systems = require('systems.index')
-local Timer   = require('vendor.timer')
 
 local function World()
   local bump   = require('vendor.bump').newWorld()
   local camera = Camera.new(0, 0)
-  local timer  = Timer.new()
   local tiny   = require('vendor.tiny').world()
   local world  = {}
+
+  local res = {
+    camera = camera,
+    world  = world
+  }
 
   function world.add(e)
     bump:add(e, e.position.x, e.position.y, e.size.w, e.size.h)
@@ -18,7 +21,7 @@ local function World()
   end
 
   function world.addSystem(System)
-    tiny:addSystem(System(world, timer, camera))
+    tiny:addSystem(System(res))
   end
 
   function world:draw()
@@ -53,7 +56,6 @@ local function World()
   end
 
   function world:update(dt)
-    timer:update(dt)
     tiny:update(dt, filter.by('update'))
   end
 

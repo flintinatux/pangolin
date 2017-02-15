@@ -2,7 +2,7 @@ local config = require('lib.config')
 local fun    = require('vendor.fun')
 local tiny   = require('vendor.tiny')
 
-local function Controls(world, timer)
+local function Controls()
   local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('controls')
 

@@ -4,7 +4,8 @@ local tiny   = require('vendor.tiny')
 local map, tile = config.map, config.tile
 local width = map.w * tile.w
 
-local function Wrap(world)
+local function Wrap(res)
+  local world   = res.world
   local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('wrap')
   local player
