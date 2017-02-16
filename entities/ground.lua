@@ -4,7 +4,7 @@ local tile = config.tile
 
 local function Ground(opts)
   return {
-    bump = 'slide',
+    bump = 'cross',
     ground = true,
     height = {
       l = opts.l,

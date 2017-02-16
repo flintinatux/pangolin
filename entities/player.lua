@@ -48,7 +48,7 @@ local function Player(opts)
       events = {
         {
           name = 'climb',
-          from = { 'jumping',  'standing' },
+          from = { 'falling', 'standing' },
           to   = 'climbing'
         },
         {
@@ -58,12 +58,12 @@ local function Player(opts)
         },
         {
           name = 'jump',
-          from = { 'climbing', 'falling', 'standing' },
-          to   = 'jumping'
+          from = { 'climbing', 'standing' },
+          to   = 'falling'
         },
         {
           name = 'land',
-          from = { 'falling',  'jumping'  },
+          from = { 'falling', 'climbing' },
           to   = 'standing'
         }
       }

@@ -1,45 +1,48 @@
-local config = require('lib.config')
+-- local config = require('lib.config')
 local tiny   = require('vendor.tiny')
 
 local function PlayerPhysics()
   local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('player')
+  system.active = true
 
   function system:process(e)
-    local controls = e.controls.states
-    local m, s = e.motion, e.state
+    -- local controls = e.controls.states
+    local motion, pos, size, state = e.motion, e.position, e.size, e.state
     local fall = true
 
-    m.ay = config.physics.g
-
     for _, c in ipairs(e.collision) do
-      if c.type == 'slide' then
-        if c.normal.x ~= 0 then
-          m.vx = 0
-        end
+      local o = c.other
 
-        if c.normal.y == 1 then
-          m.vy = 0
-        elseif c.normal.y == -1 then
-          fall = not s:land()
-          m.vy = 0
-          m.ay = 0
-        end
-      end
+      if o.ground then
+        local center = pos.x + size.w/2
+        local bottom = pos.y + size.h
 
-      if c.other.trunk and c.overlaps then
-        if controls.up then s:climb() end
-        if s:is('climbing') then
-          fall = false
-          m.ay = 0
+        if center >= o.position.x and center < o.position.x + o.size.w then
+          local y = o.height.l + (o.height.r - o.height.l) * (center - o.position.x) / o.size.w
+
+          if motion.vy > 0 and bottom >= y then
+            pos.y = y - size.h
+            motion.vy = 0
+            state:land()
+            fall = false
+          end
         end
       end
     end
 
-    if (fall) then s:fall() end
+    if fall then state:fall() end
   end
 
   return system
 end
 
 return PlayerPhysics
+
+-- if c.other.trunk and c.overlaps then
+--   if controls.up then s:climb() end
+--   if s:is('climbing') then
+--     fall = false
+--     m.ay = 0
+--   end
+-- end
