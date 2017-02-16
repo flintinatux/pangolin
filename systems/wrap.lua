@@ -1,8 +1,7 @@
 local config = require('lib.config')
 local tiny   = require('vendor.tiny')
 
-local map, tile = config.map, config.tile
-local width = map.w * tile.w
+local width = config.map.width
 
 local function Wrap(res)
   local world   = res.world

@@ -6,37 +6,32 @@ local Player = require('entities.player')
 -- local Trunk  = require('entities.trunk')
 
 local insert = table.insert
+local pi, random, sin = math.pi, math.random, math.sin
 
-local deltas = {0,0,0,0,0,0,0,0,0,0,1,-1}
-local downs  = {0,0,0,0,0,0,0,0,0,0,1}
-local ups    = {0,0,0,0,0,0,0,0,0,0,-1}
-local width, tile = config.map.w, config.tile
+local width, tile = config.map.width, config.tile
 
-local mirror = function(list)
-  for i = #list, 1, -1 do
-    insert(list, list[i])
-  end
-  return list
+local factor = function()
+  return random(-0.5, 0.5)
 end
 
-local sample = function(array)
-  return array[math.random(1,#array)]
+local genNoise = function()
+  local a, b, c, d, e = factor(), factor(), factor(), factor(), factor()
+  return function(x)
+    return a*sin(x) + b*sin(2*x) + c*sin(4*x) + d*sin(8*x) + e*sin(16*x)
+  end
 end
 
 local function Forest()
   local world = World()
 
   function world.entities()
-    local choices, delta
-    local grounds, ys = {}, { 0 }
+    local scale = 2 * pi / width
+    local noise = genNoise()
+    local grounds, ys = {}, {}
 
-    for i = 2, width/2, 1 do
-      choices = delta and (delta < 0 and ups or delta > 0 and downs) or deltas
-      delta = sample(choices)
-      ys[i] = ys[i-1] + delta * tile.h
+    for x = 0, width - tile.w, tile.w do
+      insert(ys, noise(scale * x) * 3 * tile.h)
     end
-
-    ys = mirror(ys)
 
     for i = 1, #ys, 1 do
       local l, r = ys[i], ys[i % #ys + 1]

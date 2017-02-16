@@ -5,6 +5,8 @@ local tile = {
   w = 32
 }
 
+local tilesWide = 500
+
 return {
   camera = {
     window = {
@@ -17,7 +19,7 @@ return {
   map = {
     branches = 150,
     trunks = 25,
-    w = 500 -- tiles
+    width = tilesWide * tile.w
   },
   jump = {
     threshold = 100,
