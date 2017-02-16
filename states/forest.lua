@@ -45,7 +45,7 @@ local function Forest()
       insert(grounds, Ground({ l = l, r = r, x = x, y = y }))
     end
 
-    local player = Player({ x = -tile.w/2, y = -tile.h })
+    local player = Player({ x = -tile.w, y = -tile.h })
     return concat(grounds, { player })
   end
 
