@@ -1,6 +1,10 @@
 -- local config = require('lib.config')
 local tiny   = require('vendor.tiny')
 
+local groundY = function(g, x)
+  return g.height.l + (g.height.r - g.height.l) * (x - g.position.x) / g.size.w
+end
+
 local function PlayerPhysics()
   local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('player')
@@ -15,11 +19,13 @@ local function PlayerPhysics()
       local o = c.other
 
       if o.ground then
-        local center = pos.x + size.w/2
         local bottom = pos.y + size.h
+        local center = pos.x + size.w/2
+        local left   = o.position.x
+        local right  = o.position.x + o.size.w
 
-        if center >= o.position.x and center < o.position.x + o.size.w then
-          local y = o.height.l + (o.height.r - o.height.l) * (center - o.position.x) / o.size.w
+        if inRange(left, right, center) then
+          local y = groundY(o, center)
 
           if motion.vy > 0 and bottom >= y then
             pos.y = y - size.h
