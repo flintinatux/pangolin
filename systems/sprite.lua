@@ -3,7 +3,7 @@ local tiny = require('vendor.tiny')
 local graphics = love.graphics
 
 local drawPoly = function(e)
-  local height, pos, size, sprite = e.height, e.position, e.size, e.sprite
+  local height, pos, size, sprite = e.height, e.pos, e.size, e.sprite
   local r, g, b = sprite.r, sprite.g, sprite.b
 
   local vertices = {
@@ -20,7 +20,7 @@ local drawPoly = function(e)
 end
 
 local drawRect = function(e)
-  local pos, size, sprite = e.position, e.size, e.sprite
+  local pos, size, sprite = e.pos, e.size, e.sprite
   local r, g, b = sprite.r, sprite.g, sprite.b
 
   graphics.setColor(r, g, b, 70)

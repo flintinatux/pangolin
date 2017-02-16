@@ -10,7 +10,7 @@ local function Camera(res)
   system.filter = tiny.requireAll('camera')
 
   function system:process(e, dt)
-    local pos, size, state = e.position, e.size, e.state
+    local pos, size, state = e.pos, e.size, e.state
 
     local dx = pos.x + size.w/2 - camera.x
     local dy = 0
@@ -22,7 +22,7 @@ local function Camera(res)
     local ground = world.queryRect(pos.x, pos.y + size.h, size.w, height/2, filter.by('ground'))[1]
 
     if (ground) then
-      local limit = ground.position.y - height/3 + tile.h
+      local limit = ground.pos.y - height/3 + tile.h
       bottom = bottom > limit and limit or bottom
     end
 

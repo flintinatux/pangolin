@@ -3,10 +3,10 @@ local tiny = require('vendor.tiny')
 local function Motion(res)
   local world   = res.world
   local system  = tiny.processingSystem({ update = true })
-  system.filter = tiny.requireAll('motion', 'position')
+  system.filter = tiny.requireAll('motion', 'pos')
 
   function system:process(e, dt)
-    local m, p = e.motion, e.position
+    local m, p = e.motion, e.pos
 
     m.vx = m.vx + (m.ax or 0) * dt
     m.vy = m.vy + (m.ay or 0) * dt

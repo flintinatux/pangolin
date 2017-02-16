@@ -30,7 +30,7 @@ local function Player(opts)
       ay = physics.g
     },
     player = true,
-    position = {
+    pos = {
       x = opts.x,
       y = opts.y
     },

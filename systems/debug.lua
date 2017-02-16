@@ -18,7 +18,7 @@ local function Debug()
   system.active = true
 
   function system:process(e)
-    local pos = e.position
+    local pos = e.pos
     graphics.setColor(255, 255, 255, 150)
 
     -- camera window

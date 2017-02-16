@@ -7,7 +7,7 @@ local function Branch(x, y)
   return {
     bump = filter.platform,
     minimap = true,
-    position = {
+    pos = {
       x = x,
       y = y
     },

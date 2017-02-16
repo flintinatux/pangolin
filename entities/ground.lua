@@ -11,7 +11,7 @@ local function Ground(opts)
       r = opts.r
     },
     minimap = true,
-    position = {
+    pos = {
       x = opts.x,
       y = opts.y
     },

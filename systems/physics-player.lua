@@ -2,7 +2,7 @@
 local tiny   = require('vendor.tiny')
 
 local groundY = function(g, x)
-  return g.height.l + (g.height.r - g.height.l) * (x - g.position.x) / g.size.w
+  return g.height.l + (g.height.r - g.height.l) * (x - g.pos.x) / g.size.w
 end
 
 local function PlayerPhysics()
@@ -12,7 +12,7 @@ local function PlayerPhysics()
 
   function system:process(e)
     -- local controls = e.controls.states
-    local motion, pos, size, state = e.motion, e.position, e.size, e.state
+    local motion, pos, size, state = e.motion, e.pos, e.size, e.state
     local fall = true
 
     for _, c in ipairs(e.collision) do
@@ -21,8 +21,8 @@ local function PlayerPhysics()
       if o.ground then
         local bottom = pos.y + size.h
         local center = pos.x + size.w/2
-        local left   = o.position.x
-        local right  = o.position.x + o.size.w
+        local left   = o.pos.x
+        local right  = o.pos.x + o.size.w
 
         if inRange(left, right, center) then
           local y = groundY(o, center)

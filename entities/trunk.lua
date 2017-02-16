@@ -6,7 +6,7 @@ local function Trunk(x, y)
   return {
     bump = 'cross',
     minimap = true,
-    position = {
+    pos = {
       x = x,
       y = y
     },

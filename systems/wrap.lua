@@ -15,7 +15,7 @@ local function Wrap(res)
   end
 
   function system:process(e)
-    local ex, ey, px = e.position.x, e.position.y, player.position.x
+    local ex, ey, px = e.pos.x, e.pos.y, player.pos.x
 
     if ex < px - width/2 then
       world.move(e, ex + width, ey, true)

@@ -5,8 +5,8 @@ local graphics = love.graphics
 local huge = math.huge
 local tile = config.tile
 
-local posx = path({ 'position', 'x' })
-local posy = path({ 'position', 'y' })
+local posx = path({ 'pos', 'x' })
+local posy = path({ 'pos', 'y' })
 
 local function Minimap(res)
   local camera  = res.camera
@@ -37,7 +37,7 @@ local function Minimap(res)
   end
 
   function system:process(e)
-    local p, s = e.position, e.size
+    local p, s = e.pos, e.size
     local r, g, b = e.sprite.r, e.sprite.g, e.sprite.b
     local em = e.player and 3 or 1
 

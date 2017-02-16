@@ -16,7 +16,7 @@ function filter.by(key)
 end
 
 function filter.platform(e, o)
-  local falling = e.motion.vy > 0 and e.position.y + e.size.h <= o.position.y
+  local falling = e.motion.vy > 0 and e.pos.y + e.size.h <= o.pos.y
   return falling and 'slide' or 'cross'
 end
 

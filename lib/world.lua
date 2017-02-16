@@ -15,7 +15,7 @@ local function World()
   }
 
   function world.add(e)
-    bump:add(e, e.position.x, e.position.y, e.size.w, e.size.h)
+    bump:add(e, e.pos.x, e.pos.y, e.size.w, e.size.h)
     tiny:add(e)
   end
 
@@ -37,11 +37,11 @@ local function World()
 
   function world.move(e, x, y, warp)
     if warp then
-      e.position.x = x
-      e.position.y = y
+      e.pos.x = x
+      e.pos.y = y
       bump:update(e, x, y)
     else
-      e.position.x, e.position.y, e.collision = bump:move(e, x, y, filter.bump)
+      e.pos.x, e.pos.y, e.collision = bump:move(e, x, y, filter.bump)
     end
   end
 
