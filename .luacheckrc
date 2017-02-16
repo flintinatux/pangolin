@@ -1,4 +1,3 @@
--- local s = require('vendor.squirrel_min')
 local u = require('lib.util')
 
 exclude_files = { 'vendor/**/*.lua' }

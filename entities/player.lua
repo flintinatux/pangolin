@@ -3,7 +3,7 @@ local machine = require('vendor.statemachine')
 
 local physics, tile = config.physics, config.tile
 
-local function Player(x, y)
+local function Player(opts)
   return {
     bump = 'touch',
     camera = true,
@@ -31,8 +31,8 @@ local function Player(x, y)
     },
     player = true,
     position = {
-      x = x,
-      y = y
+      x = opts.x,
+      y = opts.y
     },
     size = {
       h = tile.h,

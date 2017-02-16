@@ -2,14 +2,18 @@ local config = require('lib.config')
 
 local tile = config.tile
 
-local function Ground(x, y)
+local function Ground(opts)
   return {
     bump = 'slide',
     ground = true,
+    height = {
+      l = opts.l,
+      r = opts.r
+    },
     minimap = true,
     position = {
-      x = x,
-      y = y
+      x = opts.x,
+      y = opts.y
     },
     size = {
       h = tile.h,

@@ -19,7 +19,7 @@ local function Inputs()
     }
   end
 
-  function system:process(e, dt)
+  function system:process(e)
     for ctrl, mapping in pairs(e.inputs.states) do
       e.controls.states[ctrl] = love.keyboard.isDown(mapping)
     end

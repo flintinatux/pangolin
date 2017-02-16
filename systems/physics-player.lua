@@ -5,9 +5,9 @@ local function PlayerPhysics()
   local system  = tiny.processingSystem({ update = true })
   system.filter = tiny.requireAll('player')
 
-  function system:process(e, dt)
+  function system:process(e)
     local controls = e.controls.states
-    local m, p, s = e.motion, e.position, e.state
+    local m, s = e.motion, e.state
     local fall = true
 
     m.ay = config.physics.g

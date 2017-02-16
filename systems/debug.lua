@@ -1,10 +1,10 @@
-local config = require('lib.config')
+-- local config = require('lib.config')
 local tiny   = require('vendor.tiny')
 
 local format = string.format
 local getFPS, graphics = love.timer.getFPS, love.graphics
 
-local h = config.camera.window.h
+-- local h = config.camera.window.h
 
 local debug = [[
   fps: %.0f
@@ -17,8 +17,8 @@ local function Debug()
   system.filter = tiny.requireAll('player')
   system.active = true
 
-  function system:process(e, dt)
-    local pos, state = e.position, e.state
+  function system:process(e)
+    local pos = e.position
     graphics.setColor(255, 255, 255, 150)
 
     -- camera window

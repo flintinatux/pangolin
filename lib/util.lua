@@ -1,6 +1,6 @@
 local insert = table.insert
 
-local assign, bind, compose, concat, identity, keys, mapreduce, min, max, path, prop, reduce
+local assign, bind, compose, concat, identity, keys, map, mapreduce, min, max, path, prop, reduce, unfold
 
 -- `({ s = a }, { s = a }) -> { s = a }`.
 assign = function(a, b)
@@ -51,6 +51,14 @@ keys = function(obj)
   return res
 end
 
+-- `(a -> b, [a]) -> [b]`.
+map = function(f, list)
+  for i, v in ipairs(list) do
+    list[i] = f(v, i)
+  end
+  return list
+end
+
 -- `(b -> c, (a, c) -> a, a, [b]) -> a`.
 mapreduce = function(f, g, init, list)
   for _, v in ipairs(list) do
@@ -94,6 +102,17 @@ reduce = function(f, init, list)
   return init
 end
 
+-- `(a -> { b, a } | boolean, a) -> [b]`.
+unfold = function(f, seed)
+  local res = {}
+  local pair = f(seed)
+  while pair do
+    insert(res, pair[1])
+    pair = f(pair[2])
+  end
+  return res
+end
+
 local util = {
   assign    = assign,
   bind      = bind,
@@ -101,12 +120,14 @@ local util = {
   concat    = concat,
   identity  = identity,
   keys      = keys,
+  map       = map,
   mapreduce = mapreduce,
   max       = max,
   min       = min,
   path      = path,
   prop      = prop,
-  reduce    = reduce
+  reduce    = reduce,
+  unfold    = unfold
 }
 
 util.import = function(ctx)

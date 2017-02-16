@@ -23,7 +23,7 @@ local function Minimap(res)
     graphics.pop()
   end
 
-  function system:preProcess(dt)
+  function system:preProcess()
     local entities = system.entities
     local xmax = mapreduce(posx, max, -huge, entities)
     local xmin = mapreduce(posx, min,  huge, entities)
@@ -36,7 +36,7 @@ local function Minimap(res)
     end)
   end
 
-  function system:process(e, dt)
+  function system:process(e)
     local p, s = e.position, e.size
     local r, g, b = e.sprite.r, e.sprite.g, e.sprite.b
     local em = e.player and 3 or 1

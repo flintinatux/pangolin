@@ -11,9 +11,9 @@ local function Camera(res)
 
   function system:process(e, dt)
     local pos, size, state = e.position, e.size, e.state
-    local dx, dy = 0, 0
 
     local dx = pos.x + size.w/2 - camera.x
+    local dy = 0
 
     local ct, cb = camera.y - 2*window.h/3, camera.y + window.h/3
     local bottom = pos.y + size.h
