@@ -1,6 +1,12 @@
 -- local config = require('lib.config')
 local tiny   = require('vendor.tiny')
 
+-- local atan, cos, sin = math.atan, math.cos, math.sin
+
+-- local angle = function(g)
+--   return atan((g.height.r - g.height.l) / g.size.w)
+-- end
+
 local groundY = function(g, x)
   return g.height.l + (g.height.r - g.height.l) * (x - g.pos.x) / g.size.w
 end
@@ -12,14 +18,14 @@ local function PlayerPhysics()
 
   function system:process(e)
     -- local controls = e.controls.states
-    local motion, pos, size, state = e.motion, e.pos, e.size, e.state
+    local motion, pad, pos, size, state = e.motion, e.pad, e.pos, e.size, e.state
     local fall = true
 
     for _, c in ipairs(e.collision) do
       local o = c.other
 
       if o.ground then
-        local bottom = pos.y + size.h
+        local bottom = pos.y + size.h - pad.b
         local center = pos.x + size.w/2
         local left   = o.pos.x
         local right  = o.pos.x + o.size.w
@@ -27,8 +33,8 @@ local function PlayerPhysics()
         if inRange(left, right, center) then
           local y = groundY(o, center)
 
-          if motion.vy > 0 and bottom >= y then
-            pos.y = y - size.h
+          if state:is('running') or motion.vy > 0 and bottom >= y then
+            pos.y = y - size.h + pad.b
             motion.vy = 0
             state:land()
             fall = false

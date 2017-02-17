@@ -29,13 +29,16 @@ local function Player(opts)
       ax = 0,
       ay = physics.g
     },
+    pad = {
+      b = 4
+    },
     player = true,
     pos = {
       x = opts.x,
       y = opts.y
     },
     size = {
-      h = tile.h,
+      h = tile.h + 2,
       w = tile.w
     },
     sprite = {
@@ -44,27 +47,27 @@ local function Player(opts)
       b = 0
     },
     state = machine.create({
-      initial = 'standing',
+      initial = 'running',
       events = {
         {
           name = 'climb',
-          from = { 'falling', 'standing' },
+          from = { 'falling', 'running' },
           to   = 'climbing'
         },
         {
           name = 'fall',
-          from = { 'climbing', 'standing' },
+          from = { 'climbing', 'running' },
           to   = 'falling'
         },
         {
           name = 'jump',
-          from = { 'climbing', 'standing' },
+          from = { 'climbing', 'running' },
           to   = 'falling'
         },
         {
           name = 'land',
           from = { 'falling', 'climbing' },
-          to   = 'standing'
+          to   = 'running'
         }
       }
     }),

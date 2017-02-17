@@ -26,7 +26,7 @@ local function Camera(res)
       bottom = bottom > limit and limit or bottom
     end
 
-    if bottom > cb or state:is('standing') then
+    if bottom > cb or state:is('running') then
       dy = bottom - cb
     elseif pos.y < ct then
       dy = pos.y - ct
