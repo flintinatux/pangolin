@@ -6,7 +6,7 @@ local Player = require('entities.player')
 -- local Trunk  = require('entities.trunk')
 
 local insert = table.insert
-local pi, random, sin = math.pi, math.random, math.sin
+local floor, pi, random, sin = math.floor, math.pi, math.random, math.sin
 
 local width, tile = config.map.width, config.tile
 
@@ -30,7 +30,7 @@ local function Forest()
     local grounds, ys = {}, {}
 
     for x = 0, width - tile.w, tile.w do
-      insert(ys, noise(scale * x) * 3 * tile.h)
+      insert(ys, floor(noise(scale * x) * 3) * tile.h)
     end
 
     for i = 1, #ys, 1 do
