@@ -11,7 +11,7 @@ local pi, random, sin = math.pi, math.random, math.sin
 local width, tile = config.map.width, config.tile
 
 local factor = function()
-  return random(-0.5, 0.5)
+  return random(-0.2, 0.2)
 end
 
 local genNoise = function()
