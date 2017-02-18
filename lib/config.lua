@@ -1,3 +1,5 @@
+local ceil = math.ceil
+
 local jumpTime = 0.3
 
 local tile = {
@@ -5,8 +7,9 @@ local tile = {
   w = 32
 }
 
-local tilesWide  = 500
-local trunkRatio = 0.05
+local branchRatio = 0.333
+local tilesWide   = 500
+local trunkRatio  = 0.05
 
 return {
   camera = {
@@ -18,9 +21,9 @@ return {
     v = 150
   },
   map = {
-    branches  = 150,
+    branches  = ceil(tilesWide * branchRatio),
     tilesWide = tilesWide,
-    trunks    = tilesWide * trunkRatio,
+    trunks    = ceil(tilesWide * trunkRatio),
     width     = tilesWide * tile.w
   },
   jump = {

@@ -3,13 +3,13 @@ local filter = require('lib.filter')
 
 local tile = config.tile
 
-local function Branch(x, y)
+local function Branch(opts)
   return {
-    bump = filter.platform,
+    bump = 'cross', --filter.platform,
     minimap = true,
     pos = {
-      x = x,
-      y = y
+      x = opts.x,
+      y = opts.y
     },
     size = {
       h = tile.h,

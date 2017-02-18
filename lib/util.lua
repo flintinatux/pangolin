@@ -1,6 +1,6 @@
 local insert = table.insert
 
-local assign, bind, clamp, compose, concat, converge, flatten, identity, inRange, keys, map, mapreduce, min, max, path, prop, reduce, unfold
+local assign, bind, clamp, compose, concat, converge, flatten, identity, inRange, keys, map, mapreduce, min, max, path, prop, reduce, sample, unfold
 
 -- `({ s = a }, { s = a }) -> { s = a }`.
 assign = function(a, b)
@@ -128,6 +128,11 @@ reduce = function(f, init, list)
   return init
 end
 
+-- `[a] -> a`.
+sample = function(list)
+  return list[math.random(1,#list)]
+end
+
 -- `(a -> { b, a } | boolean, a) -> [b]`.
 unfold = function(f, seed)
   local res = {}
@@ -157,6 +162,7 @@ local util = {
   path      = path,
   prop      = prop,
   reduce    = reduce,
+  sample    = sample,
   unfold    = unfold
 }
 
