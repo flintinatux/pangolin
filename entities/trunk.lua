@@ -2,19 +2,20 @@ local config = require('lib.config')
 
 local tile = config.tile
 
-local function Trunk(x, y)
+local function Trunk(opts)
   return {
     bump = 'cross',
     minimap = true,
     pos = {
-      x = x,
-      y = y
+      x = opts.x,
+      y = opts.y
     },
     size = {
       h = tile.h,
       w = tile.w
     },
     sprite = {
+      type = 'trunk',
       r = 166,
       g = 104,
       b = 41

@@ -44,6 +44,7 @@ local function Player(opts)
       w = tile.w
     },
     sprite = {
+      type = 'player',
       r = 255,
       g = 0,
       b = 0

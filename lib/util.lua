@@ -1,6 +1,6 @@
 local insert = table.insert
 
-local assign, bind, compose, concat, converge, identity, inRange, keys, map, mapreduce, min, max, path, prop, reduce, unfold
+local assign, bind, clamp, compose, concat, converge, flatten, identity, inRange, keys, map, mapreduce, min, max, path, prop, reduce, unfold
 
 -- `({ s = a }, { s = a }) -> { s = a }`.
 assign = function(a, b)
@@ -15,6 +15,13 @@ bind = function(f, ctx)
   return function(...)
     return f(ctx, ...)
   end
+end
+
+-- `(number, number, number) -> number`.
+clamp = function(lo, hi, x)
+  return x < lo and lo
+      or x > hi and hi
+      or x
 end
 
 -- `((y -> z), ..., (a -> b)) -> a -> z`.
@@ -44,6 +51,11 @@ converge = function(after, diverge)
     local b = diverge[2](...)
     return after(a, b)
   end
+end
+
+-- `[[a]] -> [a]`.
+flatten = function(lists)
+  return reduce(concat, {}, lists)
 end
 
 -- `a -> a`.
@@ -130,9 +142,11 @@ end
 local util = {
   assign    = assign,
   bind      = bind,
+  clamp     = clamp,
   compose   = compose,
   concat    = concat,
   converge  = converge,
+  flatten   = flatten,
   identity  = identity,
   inRange   = inRange,
   keys      = keys,

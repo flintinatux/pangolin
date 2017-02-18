@@ -5,7 +5,8 @@ local tile = {
   w = 32
 }
 
-local tilesWide = 500
+local tilesWide  = 500
+local trunkRatio = 0.05
 
 return {
   camera = {
@@ -17,9 +18,10 @@ return {
     v = 150
   },
   map = {
-    branches = 150,
-    trunks = 25,
-    width = tilesWide * tile.w
+    branches  = 150,
+    tilesWide = tilesWide,
+    trunks    = tilesWide * trunkRatio,
+    width     = tilesWide * tile.w
   },
   jump = {
     threshold = 100,

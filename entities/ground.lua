@@ -20,6 +20,7 @@ local function Ground(opts)
       w = tile.w
     },
     sprite = {
+      type = 'ground',
       r = 0,
       g = 255,
       b = 0

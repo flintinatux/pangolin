@@ -2,6 +2,7 @@ local World   = require('lib.world')
 local config  = require('lib.config')
 local floor   = require('lib.floor')
 local grounds = require('lib.grounds')
+local trunks  = require('lib.trunks')
 local Player  = require('entities.player')
 
 local tile = config.tile
@@ -12,7 +13,15 @@ local function Forest()
   function world.entities()
     local ys = floor()
     local player = Player({ x = -tile.w, y = -tile.h })
-    return concat(grounds(ys), { player })
+
+    local ents = flatten({
+      grounds(ys),
+      trunks(ys),
+      { player }
+    })
+
+    print(string.format('ents: %s', #ents))
+    return ents
   end
 
   return world

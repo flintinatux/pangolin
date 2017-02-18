@@ -2,8 +2,7 @@ local config = require('lib.config')
 local Ground = require('entities.ground')
 
 local insert = table.insert
-
-local tile = config.tile
+local tile   = config.tile
 
 return function(ys)
   local grounds = {}
