@@ -10,6 +10,7 @@ local function PlayerPhysics()
   system.active = true
 
   function system:process(e)
+    local controls = e.controls.states
     local motion, pad, pos, size, state = e.motion, e.pad, e.pos, e.size, e.state
     local fall = true
 
@@ -32,6 +33,12 @@ local function PlayerPhysics()
             fall = false
           end
         end
+
+      elseif o.trunk then
+        if controls.up then state:climb() end
+        if state:is('climbing') then
+          fall = false
+        end
       end
     end
 
@@ -42,13 +49,3 @@ local function PlayerPhysics()
 end
 
 return PlayerPhysics
-
--- local controls = e.controls.states
-
--- if c.other.trunk and c.overlaps then
---   if controls.up then s:climb() end
---   if s:is('climbing') then
---     fall = false
---     m.ay = 0
---   end
--- end

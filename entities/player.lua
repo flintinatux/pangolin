@@ -14,7 +14,7 @@ local function Player(opts)
     inputs = {
       actions = {
         jump = 'k',
-        quit = 'escape'
+        quit = 'q'
       },
       states = {
         up    = 'w',

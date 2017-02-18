@@ -49,6 +49,10 @@ local function World()
   world.queryRect    = bind(bump.queryRect,    bump)
   world.querySegment = bind(bump.querySegment, bump)
 
+  function world.rehash(e)
+    tiny:addEntity(e)
+  end
+
   function world.remove(e)
     bump:remove(e)
     tiny:remove(e)
