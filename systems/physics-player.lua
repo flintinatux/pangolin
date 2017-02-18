@@ -1,11 +1,4 @@
--- local config = require('lib.config')
-local tiny   = require('vendor.tiny')
-
--- local atan, cos, sin = math.atan, math.cos, math.sin
-
--- local angle = function(g)
---   return atan((g.height.r - g.height.l) / g.size.w)
--- end
+local tiny = require('vendor.tiny')
 
 local groundY = function(g, x)
   return g.height.l + (g.height.r - g.height.l) * (x - g.pos.x) / g.size.w
@@ -17,7 +10,6 @@ local function PlayerPhysics()
   system.active = true
 
   function system:process(e)
-    -- local controls = e.controls.states
     local motion, pad, pos, size, state = e.motion, e.pad, e.pos, e.size, e.state
     local fall = true
 
@@ -50,6 +42,8 @@ local function PlayerPhysics()
 end
 
 return PlayerPhysics
+
+-- local controls = e.controls.states
 
 -- if c.other.trunk and c.overlaps then
 --   if controls.up then s:climb() end

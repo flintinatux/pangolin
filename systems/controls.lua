@@ -40,12 +40,7 @@ local function Controls()
     local s = e.state
     for _, action in ipairs(e.controls.actions) do actions[action](e) end
     e.controls.actions = {}
-
-    if (s:is('climbing')) then
-      climb(e)
-    else
-      run(e)
-    end
+    (s:is('climbing') and climb or run)(e)
   end
 
   return system

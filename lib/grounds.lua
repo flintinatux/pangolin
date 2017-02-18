@@ -2,7 +2,7 @@ local config = require('lib.config')
 local Ground = require('entities.ground')
 
 local insert = table.insert
-local floor, pi, random, sin = math.floor, math.pi, math.random, math.sin
+local ceil, pi, random, sin = math.ceil, math.pi, math.random, math.sin
 
 local width, tile = config.map.width, config.tile
 
@@ -23,7 +23,7 @@ return function()
   local grounds, ys = {}, {}
 
   for x = 0, width - tile.w, tile.w do
-    insert(ys, floor(noise(scale * x) * 3) * tile.h)
+    insert(ys, ceil(noise(scale * x) * 3) * tile.h)
   end
 
   for i = 1, #ys, 1 do
